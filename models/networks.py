@@ -110,11 +110,10 @@ def define_D(input_nc, ndf, which_model_netD,
 def semantic(init_weights=None, gpu_ids=0):
     import os
     import sys
-    sys.path.append(r'/home/lab/Documents/bohao/code/mrs')
-    sys.path.append(r'/home/lab/Documents/bohao/code/mrs/data')
     from mrs_utils import misc_utils
     from network import unet, network_utils
-    model_dir = r'/hdd6/Models/mrs/syn_104/inria/ecresnet50_dcunet_dsinria_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
+    # model_dir = r'/hdd6/Models/mrs/syn_104/inria/ecresnet50_dcunet_dsinria_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
+    model_dir = r'/data/users/bh163/models/mrs/syn_104/deepglobe/ecresnet50_dcunet_dsdeepglobe_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
     config_file = os.path.join(model_dir, 'config.json')
     args = misc_utils.load_file(config_file)
     args = misc_utils.historical_process_flag(args)
