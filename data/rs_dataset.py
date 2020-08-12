@@ -50,12 +50,14 @@ class RSDataset(BaseDataset):
         # save the option and dataset root
         BaseDataset.__init__(self, opt)
 
-        # A_dir = r'/hdd/mrs/synthinel_v103/building/ps512_pd0_ol0/'
+        A_dir = r'/data/users/bh163/data/mrs/synthinel_v205_random/building/ps512_pd0_ol0/'
         # B_dir = r'/hdd/mrs/inria/ps512_pd0_ol0/'
-        A_dir = r'/data/users/bh163/data/mrs/synthinel_v103/building/ps512_pd0_ol0'
         B_dir = r'/data/users/bh163/data/mrs/deepglobe/14p_pd0_ol0'
+        # B_dir = r'/data/users/bh163/data/mrs/inria/ps512_pd0_ol0'
+        # A_dir = r'/data/users/bh163/data/mrs/deepglobe/14p_pd0_ol0'
         self.dir_A = os.path.join(A_dir, f'{opt.phase}A.txt')
         self.dir_B = os.path.join(B_dir, f'{opt.phase}B.txt')
+        # self.dir_B = os.path.join(B_dir, 'city_files', 'kitsap', f'{opt.phase}B.txt')
 
         self.A_paths = tm.misc_utils.load_file(self.dir_A)
         self.B_paths = tm.misc_utils.load_file(self.dir_B)
