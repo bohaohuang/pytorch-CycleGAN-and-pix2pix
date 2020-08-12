@@ -62,8 +62,8 @@ class RSDataset(BaseDataset):
         self.A_paths = tm.misc_utils.load_file(self.dir_A)
         self.B_paths = tm.misc_utils.load_file(self.dir_B)
 
-        self.A_paths = [os.path.join(opt.A_dir, 'patches', a.strip().split(' ')[0]) for a in self.A_paths]
-        self.B_paths = [os.path.join(opt.B_dir, 'patches', b.strip().split(' ')[0]) for b in self.B_paths]
+        self.A_paths = [os.path.join(opt.a_dir, 'patches', a.strip().split(' ')[0]) for a in self.A_paths]
+        self.B_paths = [os.path.join(opt.b_dir, 'patches', b.strip().split(' ')[0]) for b in self.B_paths]
 
         self.A_size = len(self.A_paths)
         self.B_size = len(self.B_paths)
