@@ -36,5 +36,10 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--lr_policy', type=str, default='step', help='learning rate policy. [linear | step | plateau | cosine]')
         parser.add_argument('--lr_decay_iters', type=int, default=50, help='multiply by a gamma every lr_decay_iters iterations')
 
+        parser.add_argument('--a_dir', type=str, help='path to the folder of dataset A')
+        parser.add_argument('--b_dir', type=str, help='path to the folder of dataset A')
+        parser.add_argument('--a_appendix', type=str, default='', help='suffix of A filename')
+        parser.add_argument('--city_name', type=str, help='which city to train for dataset B')
+        parser.add_argument('--semantic_dir', type=str, help='path to the pretrained segmentation model')
         self.isTrain = True
         return parser

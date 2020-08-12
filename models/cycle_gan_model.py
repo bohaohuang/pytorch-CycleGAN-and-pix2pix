@@ -63,7 +63,7 @@ class CycleGANModel(BaseModel):
                                             opt.n_layers_D, opt.norm, use_sigmoid, opt.init_type, opt.init_gain, self.gpu_ids)
             self.netD_B = networks.define_D(opt.input_nc, opt.ndf, opt.netD,
                                             opt.n_layers_D, opt.norm, use_sigmoid, opt.init_type, opt.init_gain, self.gpu_ids)
-            self.semantic = networks.semantic(init_weights=opt.init_weights, gpu_ids=self.gpu_ids)
+            self.semantic = networks.semantic(model_dir=opt.semantic_dir, init_weights=opt.init_weights, gpu_ids=self.gpu_ids)
             self.interp = nn.Upsample(size=(opt.fineSize, opt.fineSize), mode='bilinear', align_corners=True)
             self.instancenorm = nn.InstanceNorm2d(2, affine=False)
         if self.isTrain:
@@ -156,7 +156,7 @@ class CycleGANModel(BaseModel):
         self.loss_rec_sem_B = self.compute_semantic_loss(rec_B_feat, real_B_feat) * lambda_B * self.opt.lambda_semantic #lys
         
         self.loss_sem_A = self.compute_semantic_loss(fake_B_feat, real_A_feat) * 0.1 #lys
-        self.loss_sem_B = self.compute_semantic_loss(fake_A_feat, real_B_feat) * 0.1 #lys  
+        self.loss_sem_B = self.compute_semantic_loss(fake_A_feat, real_B_feat) * 0.1 #lys
         
         # combined loss
         self.loss_G = self.loss_G_A + self.loss_G_B + self.loss_cycle_A + self.loss_cycle_B + self.loss_idt_A + self.loss_idt_B + self.loss_sem_A +self.loss_sem_B + self.loss_rec_sem_A + self.loss_rec_sem_B

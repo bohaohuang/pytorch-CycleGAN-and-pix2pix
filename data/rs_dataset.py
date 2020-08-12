@@ -50,20 +50,20 @@ class RSDataset(BaseDataset):
         # save the option and dataset root
         BaseDataset.__init__(self, opt)
 
-        A_dir = r'/data/users/bh163/data/mrs/synthinel_v205_random/building/ps512_pd0_ol0/'
+        # A_dir = r'/data/users/bh163/data/mrs/synthinel_v205_random/building/ps512_pd0_ol0/'
         # B_dir = r'/hdd/mrs/inria/ps512_pd0_ol0/'
-        B_dir = r'/data/users/bh163/data/mrs/deepglobe/14p_pd0_ol0'
+        # B_dir = r'/data/users/bh163/data/mrs/deepglobe/14p_pd0_ol0'
         # B_dir = r'/data/users/bh163/data/mrs/inria/ps512_pd0_ol0'
         # A_dir = r'/data/users/bh163/data/mrs/deepglobe/14p_pd0_ol0'
-        self.dir_A = os.path.join(A_dir, f'{opt.phase}A.txt')
-        self.dir_B = os.path.join(B_dir, f'{opt.phase}B.txt')
-        # self.dir_B = os.path.join(B_dir, 'city_files', 'kitsap', f'{opt.phase}B.txt')
+        self.dir_A = os.path.join(opt.a_dir, f'{opt.phase}A{opt.a_appendix}.txt')
+        # self.dir_B = os.path.join(opt.b_dir, f'{opt.phase}B.txt')
+        self.dir_B = os.path.join(opt.b_dir, 'city_files', opt.city_name, f'{opt.phase}B.txt')
 
         self.A_paths = tm.misc_utils.load_file(self.dir_A)
         self.B_paths = tm.misc_utils.load_file(self.dir_B)
 
-        self.A_paths = [os.path.join(A_dir, 'patches', a.strip().split(' ')[0]) for a in self.A_paths]
-        self.B_paths = [os.path.join(B_dir, 'patches', b.strip().split(' ')[0]) for b in self.B_paths]
+        self.A_paths = [os.path.join(opt.A_dir, 'patches', a.strip().split(' ')[0]) for a in self.A_paths]
+        self.B_paths = [os.path.join(opt.B_dir, 'patches', b.strip().split(' ')[0]) for b in self.B_paths]
 
         self.A_size = len(self.A_paths)
         self.B_size = len(self.B_paths)

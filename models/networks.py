@@ -107,7 +107,7 @@ def define_D(input_nc, ndf, which_model_netD,
     return init_net(netD, init_type, init_gain, gpu_ids)
 
 
-def semantic(init_weights=None, gpu_ids=0):
+def semantic(model_dir, init_weights=None, gpu_ids=0):
     import os
     import sys
     from mrs_utils import misc_utils
@@ -115,7 +115,7 @@ def semantic(init_weights=None, gpu_ids=0):
     # model_dir = r'/hdd6/Models/mrs/syn_104/inria/ecresnet50_dcunet_dsinria_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
     
     # model_dir = r'/data/users/bh163/models/mrs/syn_104/inria/ecresnet50_dcunet_dsinria_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
-    model_dir = r'/data/users/bh163/models/mrs/syn_104/deepglobe/ecresnet50_dcunet_dsdeepglobe_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
+    # model_dir = r'/data/users/bh163/models/mrs/syn_104/deepglobe/ecresnet50_dcunet_dsdeepglobe_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
 
     config_file = os.path.join(model_dir, 'config.json')
     args = misc_utils.load_file(config_file)
