@@ -13,11 +13,11 @@ export PYTHONPATH=$PYTHONPATH:/data/users/bh163/code/mrs
 python train.py --dataroot ./datasets/maps \
                 --name syn205_random_dg_${CITY_NAME} \
                 --model cycle_gan \
-                --a_dir $A_DIR \
-                --b_dir $B_DIR \
-                --a_appendix A_APPENDIX \
-                --city_name $CITY_NAME \
-                --semantic_dir $SEMANTIC_DIR \
+                --a_dir ${A_DIR} \
+                --b_dir ${B_DIR} \
+                --a_appendix ${A_APPENDIX} \
+                --city_name ${CITY_NAME} \
+                --semantic_dir ${SEMANTIC_DIR} \
                 --direction AtoB \
                 --dataset_mode rs \
                 --display_id 0 \
