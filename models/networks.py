@@ -107,26 +107,11 @@ def define_D(input_nc, ndf, which_model_netD,
     return init_net(netD, init_type, init_gain, gpu_ids)
 
 
-def semantic(model_dir, init_weights=None, gpu_ids=0):
-    import os
-    import sys
-    from mrs_utils import misc_utils
-    from network import unet, network_utils
-    # model_dir = r'/hdd6/Models/mrs/syn_104/inria/ecresnet50_dcunet_dsinria_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
-    
-    # model_dir = r'/data/users/bh163/models/mrs/syn_104/inria/ecresnet50_dcunet_dsinria_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
-    # model_dir = r'/data/users/bh163/models/mrs/syn_104/deepglobe/ecresnet50_dcunet_dsdeepglobe_lre1e-03_lrd1e-02_ep80_bs6_ds50_dr0p1'
-
-    config_file = os.path.join(model_dir, 'config.json')
-    args = misc_utils.load_file(config_file)
-    args = misc_utils.historical_process_flag(args)
-    model = unet.UNet(n_class=args['dataset']['class_num'], encoder_name=args['encoder_name'],
-                      pretrained=eval(args['imagenet']), aux_loss=False, use_emau=args['use_emau'],
-                      use_ocr=args['use_ocr'])
-    ckpt_dir = os.path.join(model_dir, 'epoch-{}.pth.tar'.format(args['trainer']['epochs']))
-
-    network_utils.load(model, ckpt_dir)
-
+def semantic(init_weights=None, gpu_ids=0):
+    model = Deeplab(num_classes=19)
+    if init_weights is not None:
+        saved_state_dict = torch.load(init_weights, map_location=lambda storage, loc: storage)
+        model.load_state_dict(saved_state_dict)
     model.eval()
     for param in model.parameters():
         param.requires_grad = False
