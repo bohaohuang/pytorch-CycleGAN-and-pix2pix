@@ -63,7 +63,7 @@ class CycleGANModel(BaseModel):
                                             opt.n_layers_D, opt.norm, use_sigmoid, opt.init_type, opt.init_gain, self.gpu_ids)
             self.netD_B = networks.define_D(opt.input_nc, opt.ndf, opt.netD,
                                             opt.n_layers_D, opt.norm, use_sigmoid, opt.init_type, opt.init_gain, self.gpu_ids)
-            self.semantic = networks.semantic(model_dir=opt.semantic_dir, init_weights=opt.init_weights, gpu_ids=self.gpu_ids)
+            self.semantic = networks.semantic(init_weights=opt.init_weights, gpu_ids=self.gpu_ids)
             self.interp = nn.Upsample(size=(opt.fineSize, opt.fineSize), mode='bilinear', align_corners=True)
             self.instancenorm = nn.InstanceNorm2d(2, affine=False)
         if self.isTrain:
